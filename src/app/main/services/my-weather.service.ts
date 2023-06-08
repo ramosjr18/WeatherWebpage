@@ -12,13 +12,13 @@ export class MyWeatherService {
 
   // ! new way
 
-  getWeatherByCityName(nameOfCity: string) {
-    const url = `${this.baseUrl}?q=${nameOfCity}&appid=${this.apiKey}&units=metric`;
+  getWeatherByCityName(nameOfCity: string, unit:String) {
+    const url = `${this.baseUrl}?q=${nameOfCity}&appid=${this.apiKey}&units=${unit}`;
     return this.http.get(url);
   }
 
-  getWeatherByGeoLocation(lat: number, lon: number) {
-    const url = `${this.baseUrl}?lat=${lat}&lon=${lon}&appid=${this.apiKey}&units=metric`;
+  getWeatherByGeoLocation(lat: number, lon: number, unit: string) {
+    const url = `${this.baseUrl}?lat=${lat}&lon=${lon}&appid=${this.apiKey}&units=${unit}`;
 
     return this.http.get(url);
   }

@@ -1,31 +1,67 @@
 <nav-bar-page></nav-bar-page>
 
-<div id="windy" style="width: 100%; height: 300px;"></div>
-<script>
-    const options = {
-        // Required: API key
-        key: 'FGLZCKyA3jiad9Z9ShoYTYKvID4nsce2', // REPLACE WITH YOUR KEY !!!
-
-        // Put additional console output
-        verbose: true,
-
-        // Optional: Initial state of the map
-        lat: 28.538336,
-        lon: -81.379234,
-        zoom: 10,
-    };
-
-    // Initialize Windy API
-    windyInit(options, windyAPI => {
-        // windyAPI is ready, and contain 'map', 'store',
-        // 'picker' and other usefull stuff
-
-        const { map } = windyAPI;
-        // .map is instance of Leaflet map
-
-        L.popup()
-            .setLatLng([options.lat, options.lon])
-            .setContent('Hello World')
-            .openOn(map);
-    });
-</script>
+<div class="infocard" style="padding-bottom: 4%;">
+  <br />
+  <h1 style="color: white; text-align: center; margin-top: 20px; margin-bottom: 5px;">Tecnologies</h1>
+  <br />
+  <div class="teamscont" style="margin-top: 2%;">
+    <div class="teamnames" style="height: 350px; width: 250px;">
+      <h2 class="title">AngularJS</h2>
+      <img
+        src="../../../../assets/icons/angularIcon.png"
+        alt=""
+        style="width: 100px; height: 100px"
+      />
+      <p style="font-size: 14px; padding-top: 15px; margin-left: 15px; margin-right: 15px;">
+        AngularJS is a JavaScript framework that simplifies the development of
+        dynamic web applications through its declarative syntax and two-way data
+        binding.
+      </p>
+    </div>
+    <div class="teamnames" style="height: 350px; width: 250px;">
+      <h2 class="title">Flutter</h2>
+      <img
+        src="../../../../assets/icons/flutter-100.png"
+        alt=""
+        style="width: 100px; height: 100px"
+      />
+      <p style="font-size: 14px; padding-top: 15px; margin-left: 10px; margin-right: 10px;">
+        Flutter is a cross-platform framework for building mobile apps with a single codebase, enabling developers to create beautiful and performant applications using a reactive UI toolkit.
+      </p>
+    </div>
+    <div class="teamnames" style="height: 350px; width: 250px;">
+      <h2 class="title">HTML5</h2>
+      <img
+        src="../../../../assets/icons/html-5100.png"
+        alt=""
+        style="width: 100px; height: 100px"
+      />
+      <p style="font-size: 14px; padding-top: 15px; margin-left: 15px; margin-right: 15px;">
+        HTML5 is the latest version of the HTML language, providing enhanced multimedia support, semantic elements, and improved accessibility, enabling developers to create modern and interactive web pages and applications.
+      </p>
+    </div>
+    <div class="teamnames" style="height: 350px; width: 250px;">
+      <h2 class="title">CSS3</h2>
+      <img
+        src="../../../../assets/icons/css3100.png"
+        alt=""
+        style="width: 100px; height: 100px"
+      />
+      <p style="font-size: 14px; padding-top: 10px; margin-left: 15px; margin-right: 15px;">
+        CSS3 is the latest version of the CSS language, introducing new styling capabilities such as animations, gradients, and transitions, empowering developers to create visually appealing and engaging designs for web pages and applications.
+      </p>
+    </div>
+    <div class="teamnames" style="height: 350px; width: 250px;">
+      <h2 class="title">Dart</h2>
+      <img
+        src="../../../../assets/icons/dart-language-100.png"
+        alt=""
+        style="width: 100px; height: 100px"
+      />
+      <p style="font-size: 14px; padding-top: 15px; margin-left: 15px; margin-right: 15px;">
+        
+Dart is a programming language developed by Google, known for its simplicity and efficiency in building cross-platform applications, including web, mobile, and desktop, with a focus on performance and scalability.
+      </p>
+    </div>
+  </div>
+</div>

@@ -15,10 +15,9 @@ export class NavbarComponent {
     private Weather: WeatherInfoMainPageComponent
   ) {}
 
-  searchByCity(city: string) {
+  searchByCity(city: string, unit: string) {
     console.log('capital being searched: ', city);
-
-    this.myWeatherService.getWeatherByCityName(city).subscribe((data) => {
+    this.myWeatherService.getWeatherByCityName(city, unit).subscribe((data) => {
       this.Weather.weatherData = data;
 
       console.log('fetched info =>', data);

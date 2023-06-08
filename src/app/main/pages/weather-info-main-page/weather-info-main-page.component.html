@@ -28,8 +28,8 @@
             <iframe width="90%" height="90%"  src="https://embed.windy.com/embed2.html?lat=51.483&lon=11.980&detailLat=51.483&detailLon=11.980&width=650&height=450&zoom=5&level=surface&overlay=wind&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1" frameborder="0"></iframe>
           </div>
           <div class="currentbutton">
-            <button class="buttonleft">°C</button>
-            <button class="buttonright">°F</button>
+            <button class="buttonleft" id="celcius" (click)="switchToCelcius()" >°C</button>
+            <button class="buttonright" id="faren" (click)="switchToFarenheit()">°F</button>
           </div>
         </div>
       </div>
@@ -52,7 +52,7 @@
         <div class="sensrow">
           <p><img src="../../../../assets/icons/termometro.png" alt="termometer logo image"
               style="height: 27px; width: 27px;"> FEELS LIKE</p>
-          <h5 class="sensletter">
+        <h5 class="sensletter">
             {{ weatherNow.main.feels_like | number : "1.0-0" }} °C
           </h5>
           <br>

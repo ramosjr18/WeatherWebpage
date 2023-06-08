@@ -6,6 +6,7 @@ import { MyWeatherService } from '../../services/my-weather.service';
   templateUrl: './weather-info-main-page.component.html',
   styles: [],
 })
+
 export class WeatherInfoMainPageComponent implements OnInit {
   // ! ATTRIBUTES:
   timelineForOneDay: any = [];
@@ -17,6 +18,7 @@ export class WeatherInfoMainPageComponent implements OnInit {
   weatherData: any;
   fetched5dayWeatherData: any = [];
   HumidityDesc!: string;
+  unit?: string;
 
   // ! CONSTRUCTOR:
   constructor(
@@ -29,10 +31,11 @@ export class WeatherInfoMainPageComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-        console.log(`Latitude: ${this.latitude}, Longitude: ${this.longitude}`);
+        this.unit = 'metric';
+        console.log(`Latitude: ${this.latitude}, Longitude: ${this.longitude}, Unit: ${this.unit}`);
 
         this.myWeatherService
-          .getWeatherByGeoLocation(this.latitude, this.longitude)
+          .getWeatherByGeoLocation(this.latitude, this.longitude, this.unit)
           .subscribe((data) => {
             console.log('data from ngOnInit => ', data);
             this.weatherData = data;
@@ -147,6 +150,68 @@ export class WeatherInfoMainPageComponent implements OnInit {
       }
 
     }
+  }
+
+
+  switchToCelcius(){
+    this.unit = 'metric';
+    console.log('this is the unit',this.unit, 'metric')
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.unit = 'metric';
+        console.log(`Latitude: ${this.latitude}, Longitude: ${this.longitude}, Unit: ${this.unit}`);
+
+        this.myWeatherService
+          .getWeatherByGeoLocation(this.latitude, this.longitude, this.unit)
+          .subscribe((data) => {
+            console.log('data from ngOnInit => ', data);
+            this.weatherData = data;
+            this.getTodayForecast(this.weatherData);
+            this.getFiveDayForecast(this.weatherData.list);
+          });
+      });
+    } else {
+      console.log('This browser does not support geolocation.');
+    }
+    const element = document.getElementById("faren")!;
+    const element2 = document.getElementById("celcius")!;
+    element.style.backgroundColor = "rgba(72, 49, 157, 0.2)";
+    element2.style.backgroundColor = "#49319D";
+  }
+
+  switchToFarenheit(){
+    // navigator.geolocation.getCurrentPosition((position)=>{
+    //   this.latitude = position.coords.latitude
+    //   this.longitude = position.coords.longitude
+    //   this.myWeatherService.getWeatherByGeoLocation(this.latitude, this.longitude, "imperial")
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.unit = 'imperial';
+
+        console.log(`Latitude: ${this.latitude}, Longitude: ${this.longitude}, Unit: ${this.unit}`);
+
+        this.myWeatherService
+          .getWeatherByGeoLocation(this.latitude, this.longitude, this.unit)
+          .subscribe((data) => {
+            console.log('data from ngOnInit => ', data);
+            this.weatherData = data;
+            this.getTodayForecast(this.weatherData);
+            this.getFiveDayForecast(this.weatherData.list);
+          });
+      });
+    } else {
+      console.log('This browser does not support geolocation.');
+    }
+    console.log('this is the unit',this.unit, 'faren');
+    const element = document.getElementById("faren")!;
+    const element2 = document.getElementById("celcius")!;
+    element.style.backgroundColor = "#49319D";
+    element2.style.backgroundColor = "rgba(72, 49, 157, 0.2)";
   }
 }
 
