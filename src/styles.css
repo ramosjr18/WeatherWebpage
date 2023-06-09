@@ -183,6 +183,10 @@ body {
   padding-bottom: 5px;
 }
 
+a{
+  color: white;
+}
+  
 /*  About Page*/
 
 .center-h2{
