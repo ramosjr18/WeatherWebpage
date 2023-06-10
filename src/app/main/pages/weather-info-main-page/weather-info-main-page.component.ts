@@ -102,6 +102,30 @@ export class WeatherInfoMainPageComponent implements OnInit {
     }
   }
 
+  // * this is for when you manually look for a city:
+  searchByCity(city: string) {
+    console.log('capital being searched: ', city);
+
+    this.myWeatherService.getWeatherByCityName(city).subscribe({
+      next: (data) => {
+        this.weatherData = data;
+
+        console.log('fetched info =>', data);
+        // * in order to set values to "blank" again (because they where already populated on ng on init!!!):
+        // this.weatherNow = false;
+        this.timelineForOneDay = [];
+        this.fetched5dayWeatherData = [];
+
+        this.getTodayForecast(this.weatherData);
+
+        this.getFiveDayForecast(this.weatherData.list);
+      },
+      // error: (err) => {
+      //   return this.showErrorHandler();
+      // },
+    });
+  }
+
   getFiveDayForecast(info: any) {
     for (let i = 0; i < info.length; i = i + 8) {
       this.fetched5dayWeatherData.push(info[i]);

@@ -12,8 +12,8 @@ export class MyWeatherService {
 
   // ! new way
 
-  getWeatherByCityName(nameOfCity: string, unit: String) {
-    const url = `${this.baseUrl}?q=${nameOfCity}&appid=${this.apiKey}&units=${unit}`;
+  getWeatherByCityName(nameOfCity: string) {
+    const url = `${this.baseUrl}?q=${nameOfCity}&appid=${this.apiKey}&units=imperial,metric`;
     return this.http.get(url);
   }
 
