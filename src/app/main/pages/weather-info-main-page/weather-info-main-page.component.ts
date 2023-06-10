@@ -22,9 +22,7 @@ export class WeatherInfoMainPageComponent implements OnInit {
   HumidityDesc!: string;
   unit?: string;
   isCelcius = true;
-  element = document.getElementById('faren')!;
-  element2 = document.getElementById('celcius')!;
-  // TODO: show error message for when city not found.
+
   // * for when city not found:
   showErrorMsg: boolean = false;
   errorMsg: string =
@@ -51,7 +49,6 @@ export class WeatherInfoMainPageComponent implements OnInit {
             (this.unit = 'metric')
           )
           .subscribe((data) => {
-            console.log('data from ngOnInit => ', data);
             this.weatherData = data;
             this.getTodayForecast(this.weatherData);
             this.getFiveDayForecast(this.weatherData.list);
@@ -121,7 +118,6 @@ export class WeatherInfoMainPageComponent implements OnInit {
         // * if these two conditions satisfy, then we will assign data to property called weatherNow(line 13):
 
         this.weatherNow = forecast;
-        // console.log('weather now => ', this.weatherNow);
       }
     }
   }
@@ -150,6 +146,7 @@ export class WeatherInfoMainPageComponent implements OnInit {
       });
   }
 
+  // * in case user types wrong city, then we make the error appear to let em know:
   showErrorHandler() {
     this.showErrorMsg = true;
 
