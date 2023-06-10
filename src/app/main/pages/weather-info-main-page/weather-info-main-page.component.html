@@ -20,76 +20,98 @@
             <h1>{{ location.name }}</h1>
             <h3>{{ weatherNow.main.temp | number : "1.0-0" }} °C</h3>
             <div class="condition">
-              <img src="../../../../assets/icons/nubladologo.png" alt="">
-              <p class=""> {{ weatherNow.weather![0].main }}</p>
+              <img src="../../../../assets/icons/nubladologo.png" alt="" />
+              <p class="">{{ weatherNow.weather![0].main }}</p>
             </div>
           </div>
-          <div class="currentlocationblank" style="padding: 15px;">
-            <iframe width="90%" height="90%"  src="https://embed.windy.com/embed2.html?lat=51.483&lon=11.980&detailLat=51.483&detailLon=11.980&width=650&height=450&zoom=5&level=surface&overlay=wind&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1" frameborder="0"></iframe>
+          <div class="currentlocationblank" style="padding: 15px">
+            <iframe
+              width="90%"
+              height="90%"
+              src="https://embed.windy.com/embed2.html?lat=51.483&lon=11.980&detailLat=51.483&detailLon=11.980&width=650&height=450&zoom=5&level=surface&overlay=wind&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1"
+              frameborder="0"
+            ></iframe>
           </div>
           <div class="currentbutton">
-            <button class="buttonleft" id="celcius" (click)="switchToCelcius()" >°C</button>
-            <button class="buttonright" id="faren" (click)="switchToFarenheit()">°F</button>
+            <button class="buttonleft" id="celcius">°C</button>
+            <button class="buttonright" id="faren">°F</button>
           </div>
         </div>
       </div>
-      <!-- <div class="p-3">{{ currentTime | date : "EEEE dd MMMM, HH:mm" }}</div> -->
-      <!-- <div class="border-right p-3" id="sidebar">
-        <hr /> -->
+
       <!-- * MAIN-CARD-WEATHER-INFO -->
-      <!-- <app-main-card [weatherNow]="weatherNow"></app-main-card>
-      </div> -->
     </div>
   </div>
 
   <!-- FORECAST -->
 
   <div class="infocont">
-
     <div class="forecast">
-
       <div class="sensinfo">
         <div class="sensrow">
-          <p><img src="../../../../assets/icons/termometro.png" alt="termometer logo image"
-              style="height: 27px; width: 27px;"> FEELS LIKE</p>
-        <h5 class="sensletter">
+          <p>
+            <img
+              src="../../../../assets/icons/termometro.png"
+              alt="termometer logo image"
+              style="height: 27px; width: 27px"
+            />
+            FEELS LIKE
+          </p>
+          <h5 class="sensletter">
             {{ weatherNow.main.feels_like | number : "1.0-0" }} °C
           </h5>
-          <br>
+          <br />
           <p id="feels">
-            {{this.getFeelDesc()}}
+            {{ this.getFeelDesc() }}
           </p>
         </div>
         <div class="sensrow">
-          <p><img src="../../../../assets/icons/gota-de-liquido.png" alt="Drop logo image"
-              style="height: 27px; width: 27px;"> HUMIDITY</p>
-          <h5 class="sensletter">
-            {{ weatherNow.main.humidity }} %
-          </h5>
-          <br>
+          <p>
+            <img
+              src="../../../../assets/icons/gota-de-liquido.png"
+              alt="Drop logo image"
+              style="height: 27px; width: 27px"
+            />
+            HUMIDITY
+          </p>
+          <h5 class="sensletter">{{ weatherNow.main.humidity }} %</h5>
+          <br />
           <p id="humidity">
-            {{ this.getHumidityDesc()}}
+            {{ this.getHumidityDesc() }}
           </p>
         </div>
         <div class="sensrow">
-          <p><img src="../../../../assets/icons/ver.png" alt="Eye logo image" style="height: 27px; width: 27px;">
-            VISIBILITY</p>
+          <p>
+            <img
+              src="../../../../assets/icons/ver.png"
+              alt="Eye logo image"
+              style="height: 27px; width: 27px"
+            />
+            VISIBILITY
+          </p>
           <h5 class="sensletter">
-            {{ weatherNow.visibility /1000 | number : "1.0-0" }} km
-          </h5><br>
+            {{ weatherNow.visibility / 1000 | number : "1.0-0" }} km
+          </h5>
+          <br />
           <p id="visibility">
-            {{ this.getVisibilityDesc()}}
+            {{ this.getVisibilityDesc() }}
           </p>
         </div>
         <div class="sensrow">
-          <P><img src="../../../../assets/icons/viento.png" alt="Wind logo image" style="height: 27px; width: 27px;">
-            WIND</P>
+          <P
+            ><img
+              src="../../../../assets/icons/viento.png"
+              alt="Wind logo image"
+              style="height: 27px; width: 27px"
+            />
+            WIND</P
+          >
           <h5 class="sensletter">
             {{ weatherNow.wind.speed | number : "1.0-0" }} km/h
           </h5>
-          <br>
+          <br />
           <p id="wind">
-            {{ this.getWindDesc()}}
+            {{ this.getWindDesc() }}
           </p>
         </div>
       </div>
@@ -97,29 +119,17 @@
       <div class="forecastinfo">
         <h4 class="infotitle">Forecast</h4>
         <div class="row">
-          <app-three-day-forecast [timelineForOneDay]="timelineForOneDay"></app-three-day-forecast>
+          <app-three-day-forecast
+            [timelineForOneDay]="timelineForOneDay"
+          ></app-three-day-forecast>
         </div>
-        <br><br>
+        <br /><br />
         <div class="row">
-          <app-five-day-forecast [fetched5dayWeatherData]="fetched5dayWeatherData"></app-five-day-forecast>
+          <app-five-day-forecast
+            [fetched5dayWeatherData]="fetched5dayWeatherData"
+          ></app-five-day-forecast>
         </div>
       </div>
-
     </div>
-
   </div>
-
-  <!-- <div class="row">
-    <div class="col-12 col-md-6 col-lg-4">
-      <div class="row p-3">
-        <div class="col-12 pt-2">
-
-          <h5>5 day forecast</h5>
-          <app-five-day-forecast [fetched5dayWeatherData]="fetched5dayWeatherData"></app-five-day-forecast>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-
 </div>
