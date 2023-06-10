@@ -18,7 +18,11 @@
         <div class="allcont">
           <div class="currentlocation currentmain">
             <h1>{{ location.name }}</h1>
-            <h3>{{ weatherNow.main.temp | number : "1.0-0" }} °C</h3>
+            <h3 *ngIf="isCelcius">
+              {{ weatherNow.main.temp | number : "1.0-0" }} °C
+            </h3>
+            <h3 *ngIf="!isCelcius">{{ weatherNow.main.temp | toF }} °F</h3>
+
             <div class="condition">
               <img src="../../../../assets/icons/nubladologo.png" alt="" />
               <p class="">{{ weatherNow.weather![0].main }}</p>
@@ -33,8 +37,12 @@
             ></iframe>
           </div>
           <div class="currentbutton">
-            <button class="buttonleft" id="celcius">°C</button>
-            <button class="buttonright" id="faren">°F</button>
+            <button class="buttonleft" id="celcius" (click)="toggleUnitToC()">
+              °C
+            </button>
+            <button class="buttonright" id="faren" (click)="toggleUnitToF()">
+              °F
+            </button>
           </div>
         </div>
       </div>
@@ -57,8 +65,11 @@
             />
             FEELS LIKE
           </p>
-          <h5 class="sensletter">
+          <h5 *ngIf="isCelcius" class="sensletter">
             {{ weatherNow.main.feels_like | number : "1.0-0" }} °C
+          </h5>
+          <h5 *ngIf="!isCelcius" class="sensletter">
+            {{ weatherNow.main.feels_like | toF }} °F
           </h5>
           <br />
           <p id="feels">
@@ -121,12 +132,15 @@
         <div class="row">
           <app-three-day-forecast
             [timelineForOneDay]="timelineForOneDay"
-          ></app-three-day-forecast>
+            [isCelcius]="isCelcius"
+          >
+          </app-three-day-forecast>
         </div>
         <br /><br />
         <div class="row">
           <app-five-day-forecast
             [fetched5dayWeatherData]="fetched5dayWeatherData"
+            [isCelcius]="isCelcius"
           ></app-five-day-forecast>
         </div>
       </div>

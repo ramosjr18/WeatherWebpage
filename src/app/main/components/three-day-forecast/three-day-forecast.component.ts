@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class ThreeDayForecastComponent {
   @Input() timelineForOneDay: any;
+  @Input() isCelcius: any;
 }

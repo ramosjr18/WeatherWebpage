@@ -21,6 +21,9 @@ export class WeatherInfoMainPageComponent implements OnInit {
   fetched5dayWeatherData: any = [];
   HumidityDesc!: string;
   unit?: string;
+  isCelcius = true;
+  element = document.getElementById('faren')!;
+  element2 = document.getElementById('celcius')!;
   // TODO: show error message for when city not found.
 
   // ! CONSTRUCTOR:
@@ -34,15 +37,15 @@ export class WeatherInfoMainPageComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-        this.unit = 'metric';
-        console.log(
-          `Latitude: ${this.latitude}, Longitude: ${this.longitude}, Unit: ${this.unit}`
-        );
 
         // * passing in geo parameters to getWeatherByGeoLocation method:
 
         this.myWeatherService
-          .getWeatherByGeoLocation(this.latitude, this.longitude, this.unit)
+          .getWeatherByGeoLocation(
+            this.latitude,
+            this.longitude,
+            (this.unit = 'metric')
+          )
           .subscribe((data) => {
             console.log('data from ngOnInit => ', data);
             this.weatherData = data;
@@ -57,6 +60,24 @@ export class WeatherInfoMainPageComponent implements OnInit {
   }
 
   // ! METHODS:
+
+  toggleUnitToF() {
+    const element = document.getElementById('faren')!;
+    const element2 = document.getElementById('celcius')!;
+    element.style.backgroundColor = '#49319D';
+    element2.style.backgroundColor = 'rgba(72, 49, 157, 0.2)';
+
+    return (this.isCelcius = false);
+  }
+  toggleUnitToC() {
+    const element = document.getElementById('faren')!;
+    const element2 = document.getElementById('celcius')!;
+    element.style.backgroundColor = 'rgba(72, 49, 157, 0.2)';
+    element2.style.backgroundColor = '#49319D';
+
+    return (this.isCelcius = true);
+  }
+
   // * to compare:
   dateRange() {
     // * it will always return a range between 2 dates, that have a difference of 3 hours -1sec: 2:59
@@ -74,7 +95,6 @@ export class WeatherInfoMainPageComponent implements OnInit {
     // ! list is three hour forecast:
     // * we'll look through the list and slice the data so we can get just the first 8 elements (8 elements because it has the weather for every three hours and well 8 * 3 = 24, and we are looking for *read function name):
     for (const forecast of info.list.slice(0, 7)) {
-      console.log('forecast =>', forecast);
       // * here we are pushing specific info from  list into timelineForOneDay:
 
       this.timelineForOneDay.push({
@@ -97,44 +117,41 @@ export class WeatherInfoMainPageComponent implements OnInit {
         // * if these two conditions satisfy, then we will assign data to property called weatherNow(line 13):
 
         this.weatherNow = forecast;
-        console.log('weather now => ', this.weatherNow);
+        // console.log('weather now => ', this.weatherNow);
       }
     }
   }
 
   // * this is for when you manually look for a city:
   searchByCity(city: string) {
-    console.log('capital being searched: ', city);
+    console.log('city typed: ', city);
 
-    this.myWeatherService.getWeatherByCityName(city).subscribe({
-      next: (data) => {
-        this.weatherData = data;
+    this.myWeatherService
+      .getWeatherByCityName(city, (this.unit = 'metric'))
+      .subscribe({
+        next: (data) => {
+          this.weatherData = data;
 
-        console.log('fetched info =>', data);
-        // * in order to set values to "blank" again (because they where already populated on ng on init!!!):
-        // this.weatherNow = false;
-        this.timelineForOneDay = [];
-        this.fetched5dayWeatherData = [];
+          console.log('fetched info =>', data);
+          // * in order to set values to "blank" again (because they where already populated on ng on init!!!):
+          // this.weatherNow = false;
+          this.timelineForOneDay = [];
+          this.fetched5dayWeatherData = [];
 
-        this.getTodayForecast(this.weatherData);
+          this.getTodayForecast(this.weatherData);
 
-        this.getFiveDayForecast(this.weatherData.list);
-      },
-      // error: (err) => {
-      //   return this.showErrorHandler();
-      // },
-    });
+          this.getFiveDayForecast(this.weatherData.list);
+        },
+        // error: (err) => {
+        //   return this.showErrorHandler();
+        // },
+      });
   }
 
   getFiveDayForecast(info: any) {
     for (let i = 0; i < info.length; i = i + 8) {
       this.fetched5dayWeatherData.push(info[i]);
     }
-
-    console.log(
-      'five day forecast array with data => ',
-      this.fetched5dayWeatherData
-    );
   }
 
   // ! ---??-----
@@ -197,65 +214,4 @@ export class WeatherInfoMainPageComponent implements OnInit {
       }
     }
   }
-
-  // switchToCelcius(){
-  //   this.unit = 'metric';
-  //   console.log('this is the unit',this.unit, 'metric')
-
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       this.latitude = position.coords.latitude;
-  //       this.longitude = position.coords.longitude;
-  //       this.unit = 'metric';
-  //       console.log(`Latitude: ${this.latitude}, Longitude: ${this.longitude}, Unit: ${this.unit}`);
-
-  //       this.myWeatherService
-  //         .getWeatherByGeoLocation(this.latitude, this.longitude, this.unit)
-  //         .subscribe((data) => {
-  //           console.log('data from ngOnInit => ', data);
-  //           this.weatherData = data;
-  //           this.getTodayForecast(this.weatherData);
-  //           this.getFiveDayForecast(this.weatherData.list);
-  //         });
-  //     });
-  //   } else {
-  //     console.log('This browser does not support geolocation.');
-  //   }
-  //   const element = document.getElementById("faren")!;
-  //   const element2 = document.getElementById("celcius")!;
-  //   element.style.backgroundColor = "rgba(72, 49, 157, 0.2)";
-  //   element2.style.backgroundColor = "#49319D";
-  // }
-
-  // switchToFarenheit(){
-  //   // navigator.geolocation.getCurrentPosition((position)=>{
-  //   //   this.latitude = position.coords.latitude
-  //   //   this.longitude = position.coords.longitude
-  //   //   this.myWeatherService.getWeatherByGeoLocation(this.latitude, this.longitude, "imperial")
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       this.latitude = position.coords.latitude;
-  //       this.longitude = position.coords.longitude;
-  //       this.unit = 'imperial';
-
-  //       console.log(`Latitude: ${this.latitude}, Longitude: ${this.longitude}, Unit: ${this.unit}`);
-
-  //       this.myWeatherService
-  //         .getWeatherByGeoLocation(this.latitude, this.longitude, this.unit)
-  //         .subscribe((data) => {
-  //           console.log('data from ngOnInit => ', data);
-  //           this.weatherData = data;
-  //           this.getTodayForecast(this.weatherData);
-  //           this.getFiveDayForecast(this.weatherData.list);
-  //         });
-  //     });
-  //   } else {
-  //     console.log('This browser does not support geolocation.');
-  //   }
-  //   console.log('this is the unit',this.unit, 'faren');
-  //   const element = document.getElementById("faren")!;
-  //   const element2 = document.getElementById("celcius")!;
-  //   element.style.backgroundColor = "#49319D";
-  //   element2.style.backgroundColor = "rgba(72, 49, 157, 0.2)";
-  // }
 }

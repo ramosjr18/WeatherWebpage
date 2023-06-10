@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class FiveDayForecastComponent {
   @Input() fetched5dayWeatherData: any;
+  @Input() isCelcius: any;
 }

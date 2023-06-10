@@ -2,10 +2,16 @@
   <div *ngFor="let item of timelineForOneDay" class="castcard">
     <div class="">
       {{ item.time | date : "HH:mm" }}
-      <br>
+      <br />
       <img class="forecastimg" src="{{ item.icon | weatherImg }}" alt="" />
-      <br>
-      <h5 class="foretemp">{{ item.temp | number : "1.0-0" }}°C</h5>
+      <br />
+      <!-- <h5 class="foretemp">{{ item.temp | number : "1.0-0" }}°C</h5> -->
+
+      <h5 *ngIf="isCelcius" class="foretemp">
+        {{ item.temp | number : "1.0-0" }} °C
+      </h5>
+      <h5 *ngIf="!isCelcius" class="foretemp">{{ item.temp | toF }} °F</h5>
+
       <!-- <p class="card-text">
         {{ item.conditions }}
       </p> -->

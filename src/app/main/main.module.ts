@@ -15,6 +15,7 @@ import { TeamComponent } from './pages/team-page/team.component';
 import { TechComponent } from './pages/tech/tech.component';
 import { NavbarComponent } from './components/nav-bar/nav-bar.component';
 import { SharedModule } from '../shared/shared.module';
+import { toF } from './pipes/toF.pipe';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { SharedModule } from '../shared/shared.module';
     TeamComponent,
     TechComponent,
     NavbarComponent,
+    toF,
   ],
   imports: [CommonModule, MainRoutingModule, HttpClientModule, SharedModule],
 })

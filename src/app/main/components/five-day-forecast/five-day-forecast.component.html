@@ -1,36 +1,19 @@
-<!-- <table class="table" style="color: white;">
-  <thead>
-    <tr>
-      <th scope="col">Temperature</th>
-      <th scope="col">Condition</th>
-      <th scope="col">date</th>
-      <th scope="col">day of the week</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let forecast of fetched5dayWeatherData">
-      <td>
-        {{ forecast.main.temp | number : "1.0-0" }} °C
-        <img class="img-size" src="{{ forecast.weather![0].icon | weatherImg }}" alt="" />
-      </td>
-      <td>{{ forecast.weather![0].main }}</td>
-      <td>
-        {{ forecast.dt_txt | date : "EEE, MMM dd" }}
-      </td>
-      <td>
-        {{ forecast.dt_txt | date : "EEE" }}
-      </td>
-    </tr>
-  </tbody>
-</table> -->
-
 <div class="hourscast">
-  <div *ngFor="let forecast of fetched5dayWeatherData" class="castcard" style="max-width: 10rem">
+  <div
+    *ngFor="let forecast of fetched5dayWeatherData"
+    class="castcard"
+    style="max-width: 10rem"
+  >
     <div>
       {{ forecast.dt_txt | date : "EEE" }}
-      <br>
-      <img class="forecastimg" src="{{ forecast.weather![0].icon | weatherImg }}" alt="" />
-      <h5>{{ forecast.main.temp | number : "1.0-0" }} °C</h5>
+      <br />
+      <img
+        class="forecastimg"
+        src="{{ forecast.weather![0].icon | weatherImg }}"
+        alt=""
+      />
+      <h5 *ngIf="isCelcius">{{ forecast.main.temp | number : "1.0-0" }} °C</h5>
+      <h5 *ngIf="!isCelcius">{{ forecast.main.temp | toF }} °F</h5>
     </div>
   </div>
 </div>
