@@ -1,9 +1,18 @@
 <nav-bar-page (newSearchByCityEvent)="searchByCity($event)"></nav-bar-page>
+<!-- ! ERROR MESSAGE -->
+
+<div class="row" *ngIf="showErrorMsg">
+  <div class="col-12">
+    <div class="alert alert-danger" role="alert">
+      {{ errorMsg }}
+    </div>
+  </div>
+</div>
 
 <!-- ! INTRO MESSAGE -->
 <ng-template #instructions>
   <div class="row p-3">
-    <div class="col-12 col-md-6 col-lg-7">
+    <div class="col-12">
       <div class="alert alert-info" role="alert">loading...</div>
     </div>
   </div>

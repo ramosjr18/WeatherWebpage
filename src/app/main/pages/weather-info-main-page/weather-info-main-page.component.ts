@@ -25,6 +25,10 @@ export class WeatherInfoMainPageComponent implements OnInit {
   element = document.getElementById('faren')!;
   element2 = document.getElementById('celcius')!;
   // TODO: show error message for when city not found.
+  // * for when city not found:
+  showErrorMsg: boolean = false;
+  errorMsg: string =
+    'City name not found. Please check spelling or try another name...';
 
   // ! CONSTRUCTOR:
   constructor(public myWeatherService: MyWeatherService) {}
@@ -132,9 +136,7 @@ export class WeatherInfoMainPageComponent implements OnInit {
         next: (data) => {
           this.weatherData = data;
 
-          console.log('fetched info =>', data);
           // * in order to set values to "blank" again (because they where already populated on ng on init!!!):
-          // this.weatherNow = false;
           this.timelineForOneDay = [];
           this.fetched5dayWeatherData = [];
 
@@ -142,10 +144,18 @@ export class WeatherInfoMainPageComponent implements OnInit {
 
           this.getFiveDayForecast(this.weatherData.list);
         },
-        // error: (err) => {
-        //   return this.showErrorHandler();
-        // },
+        error: (err) => {
+          return this.showErrorHandler();
+        },
       });
+  }
+
+  showErrorHandler() {
+    this.showErrorMsg = true;
+
+    return setTimeout(() => {
+      this.showErrorMsg = false;
+    }, 2300);
   }
 
   getFiveDayForecast(info: any) {
