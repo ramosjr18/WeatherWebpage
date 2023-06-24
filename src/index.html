@@ -20,5 +20,17 @@
   </head>
   <body>
     <app-root></app-root>
+    <script>
+      // Change the background based on different conditions
+      var condition = "condition2"; // Change this value to test different conditions
+
+      if (condition === "condition1") {
+          document.body.className = "condition1";
+      } else if (condition === "condition2") {
+          document.body.className = "condition2";
+      } else if (condition === "condition3") {
+          document.body.className = "condition3";
+      }
+  </script>
   </body>
 </html>
