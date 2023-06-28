@@ -8,6 +8,10 @@ body {
   background-attachment: fixed;
 }
 
+.condition0 {
+  background-image: url(../src/assets/images/wea/rainy-.jpg);
+}
+
 .condition1 {
   background-image: url(../src/assets/images/wea/mist.png);
 }
@@ -282,4 +286,5 @@ a {
 }
 
 /* For screens larger than 1200px */
-@media (min-width: 1200px) {}
+@media (min-width: 1200px) {
+}

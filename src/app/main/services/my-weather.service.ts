@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { WeatherInfoMainPageComponent } from '../pages/weather-info-main-page/weather-info-main-page.component';
 
 @Injectable({
   providedIn: 'root',
@@ -23,46 +24,49 @@ export class MyWeatherService {
     return this.http.get(url);
   }
 
-  // Fetch weather data from the API
-  fetchWeatherData() {
+  fetchdata() {
+    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?appid=${this.apiKey}`;
 
-    // Make an HTTP request to the API endpoint
-    fetch(this.baseUrl)
+    fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
-        // Extract the weather condition or code from the data
-        const weatherCode = data.list[0].weather[0].id;
+        // Assuming the weatherNow object represents the current weather
+        const weatherNow = data.list[0];
 
-        // Determine the background image URL based on the weather code
-        const imageUrl = this.getBackgroundImageUrl(weatherCode);
+        // Extract the weather code
+        const weatherCode = weatherNow.weather[0].main;
 
-        // Update the background dynamically
-        document.body.style.backgroundImage = `url(../src/assets/images/wea/${imageUrl})`;
+        // Use the weather code to change the background
+        this.changeBackground(weatherCode);
       })
       .catch(error => {
-        console.error('Error fetching weather data:', error);
+        console.log('Error fetching weather data:', error);
       });
+
   }
 
-  // Mapping of weather codes to background image URLs
-  getBackgroundImageUrl(weatherCode: any) {
-    // Add your logic here to associate weather codes with specific image URLs
+
+  changeBackground(weatherCode:any) {
+    const body = document.body;
+
+    // Reset the background color
+    body.className = 'condition1';
+
     if (weatherCode >= 200 && weatherCode < 300) {
-      return 'thunderstorm.jpg';
+      body.className = 'condition2';
     } else if (weatherCode >= 300 && weatherCode < 600) {
-      return 'rainy.jpg';
+      body.className = 'condition0';
     } else if (weatherCode >= 600 && weatherCode < 700) {
-      return 'snowy.jpg';
+      body.className = 'condition0';
     } else if (weatherCode >= 700 && weatherCode < 800) {
-      return 'mist.jpg';
+      body.className = 'condition1';
     } else if (weatherCode === 800) {
-      return 'clear.jpg';
+      body.className = 'condition3';
     } else if (weatherCode > 800 && weatherCode < 900) {
-      return 'cloudy.jpg';
+      body.className = 'condition4';
     } else {
-      return 'default.jpg';
+      body.className = 'condition0';
     }
   }
-
 
 }

@@ -29,7 +29,7 @@ export class WeatherInfoMainPageComponent implements OnInit {
     'City name not found. Please check spelling or try another name...';
 
   // ! CONSTRUCTOR:
-  constructor(public myWeatherService: MyWeatherService) {}
+  constructor(public myWeatherService: MyWeatherService) { }
 
   // ! ON INIT:
   // * checking if geolocation is possible by browser:
@@ -224,3 +224,5 @@ export class WeatherInfoMainPageComponent implements OnInit {
 
 
 }
+
+
