@@ -288,3 +288,20 @@ a {
 /* For screens larger than 1200px */
 @media (min-width: 1200px) {
 }
+
+.hamburger {
+  display: none; /* Hide by default on larger screens */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.line {
+  width: 100%;
+  height: 2px;
+  background-color: #FFFFFF;
+  margin-bottom: 4px;
+}
