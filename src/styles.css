@@ -325,3 +325,28 @@ a {
   background-color: #FFFFFF;
   margin-bottom: 4px;
 }
+
+.menu {
+  display: flex;
+  list-style: none;
+}
+
+.menu li {
+  margin-right: 20px;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex; /* Show only on smaller screens */
+  }
+
+  .menu {
+    display: none; /* Hide the menu items by default on smaller screens */
+  }
+
+  .menu.show {
+    display: flex; /* Show the menu when the hamburger button is clicked */
+    flex-direction: row;
+  }
+}

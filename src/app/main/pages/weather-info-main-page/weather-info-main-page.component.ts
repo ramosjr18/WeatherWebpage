@@ -261,6 +261,16 @@ export class WeatherInfoMainPageComponent implements OnInit {
     }
   }
 
+  hamburguer() {
+    const hamburger = document.querySelector('.hamburger') as HTMLElement;
+    const menu = document.querySelector('.menu') as HTMLElement;
+  
+    // Toggle the menu when the hamburger button is clicked
+    hamburger.addEventListener('click', function() {
+      menu.classList.toggle('show');
+    });
+  }
+
 }
 
 
