@@ -161,10 +161,13 @@ export class WeatherInfoMainPageComponent implements OnInit {
     }
   }
 
-  // ! ---??-----
+  // function to check the humidity and display a legend 
   getHumidityDesc() {
+    // variables to call the humidity from the api and to change the display
     const humidity = this.weatherNow.main.humidity;
     const messageElement = document.getElementById('humidity');
+
+  //comparisson to change the legend
     if (messageElement) {
       if (humidity < 30) {
         messageElement.textContent = 'Humidity is low.';
@@ -176,9 +179,13 @@ export class WeatherInfoMainPageComponent implements OnInit {
     }
   }
 
+  //function to check for wind speed and display a legend
   getWindDesc() {
+    // variables to call for the api and also change the display
     const wind = this.weatherNow.wind.speed;
     const messageElement = document.getElementById('wind');
+
+    //comparisson to change the display
     if (messageElement) {
       if (wind < 10) {
         messageElement.textContent = 'Wind is calm.';
@@ -190,9 +197,13 @@ export class WeatherInfoMainPageComponent implements OnInit {
     }
   }
 
+  // function to check for temparature 
   getFeelDesc() {
+    // variables to call the api and change display legend
     const feels = this.weatherNow.main.feels_like;
     const messageElement = document.getElementById('feels');
+
+    // comparisson to change the display
     if (messageElement) {
       if (feels < 10) {
         messageElement.textContent = 'Feels very cold.';
@@ -206,9 +217,13 @@ export class WeatherInfoMainPageComponent implements OnInit {
     }
   }
 
+  // function to change the visibility description
   getVisibilityDesc() {
+    // variables to call the api and change display
     const visibility = this.weatherNow.visibility;
     const messageElement = document.getElementById('visibility');
+
+    // comparisson to change the info displayed
     if (messageElement) {
       if (visibility < 1) {
         messageElement.textContent = 'Visibility is very low.';
@@ -222,6 +237,29 @@ export class WeatherInfoMainPageComponent implements OnInit {
     }
   }
 
+  //funtion to change the background color of the page based on the weather
+  changeBackground(weatherCode:any) {
+    const body = document.body;
+
+    // Reset the background color
+    body.className = 'condition1';
+
+    if (weatherCode == 'Storm') {
+      body.className = 'condition2';
+    } else if (weatherCode == 'Clear') {
+      body.className = 'condition3';
+    } else if (weatherCode == 'Rain') {
+      body.className = 'condition0';
+    } else if (weatherCode == 'Clouds') {
+      body.className = 'condition4';
+    } else if (weatherCode === '') {
+      body.className = 'condition3';
+    } else if (weatherCode == '') {
+      body.className = 'condition4';
+    } else {
+      body.className = 'condition0';
+    }
+  }
 
 }
 

@@ -1,7 +1,8 @@
-<!-- {{ this.myWeatherService.fetchdata() }} -->
+{{ this.changeBackground(weatherNow.weather![0].main) }}
+<!-- navigation bar extended from ist parent component  -->
 <nav-bar-page (newSearchByCityEvent)="searchByCity($event)"></nav-bar-page>
-<!-- ! ERROR MESSAGE -->
 
+<!-- ! ERROR MESSAGE -->
 <div class="row" *ngIf="showErrorMsg">
   <div class="col-12">
     <div class="alert alert-danger" role="alert">
@@ -19,12 +20,13 @@
   </div>
 </ng-template>
 
-<!-- ! SECTION -->
+<!-- information cards section -->
 <div class="infocard" *ngIf="weatherNow; else instructions">
   <div class="row">
     <!-- * MAIN-HEADING -->
     <div class="">
       <div class="topcont">
+        <!-- div displaying location, map and button to change from C to F degrees -->
         <div class="allcont">
           <div class="currentlocation currentmain">
             <h1>{{ location.name }}</h1>
@@ -65,6 +67,7 @@
 
   <div class="infocont">
     <div class="forecast">
+      <!-- div displaying some weather's main characteristics -->
       <div class="sensinfo">
         <div class="sensrow">
           <p>
@@ -138,6 +141,7 @@
       </div>
       <br>
 
+      <!-- div displaying components with info about teh forecast -->
       <div class="forecastinfo">
         <h4 class="infotitle">Forecast</h4>
         <div class="row">
