@@ -1,13 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-  background-image: url(../src/assets/images/wea/rainy-.jpg);
+  /* setting a default image and its properties  */
+  background-image: url(../src/assets/images/europe.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
 }
 
+/* setting conditions from 0 to 4 to make a changing background depending on the weather  */
 .condition0 {
   background-image: url(../src/assets/images/wea/rainy-.jpg);
 }
@@ -28,13 +30,16 @@ body {
   background-image: url(../src/assets/images/wea/cloudy.png);
 }
 
+/* info card settings */
 .infocard {
   background-color: rgba(0, 0, 0, 0.8);
   width: 93.5%;
   margin: 3%;
   border-radius: 15px;
+  color: white;
 }
 
+/* navigation bar settings */
 .navbar {
   margin: 0;
   background-color: rgba(0, 0, 0, 0.8);
@@ -48,19 +53,21 @@ body {
   height: 40px;
 }
 
+/* main container display settings  */
 .topcont {
   display: flex;
   width: 100%;
   height: 300px;
 }
 
+/* top container display settings  */
 .allcont {
   display: flex;
   width: 100%;
   height: 100%;
 }
 
-
+/* top child container for location display settings  */
 .currentlocation {
   display: block;
   justify-content: center;
@@ -72,10 +79,12 @@ body {
   padding-top: 6%;
 }
 
+/* top child container for map display settings  */
 .currentlocationblank {
   width: 40.33%;
 }
 
+/* top child container for button display settings  */
 .currentbutton {
   padding: 9px;
   display: flex;
@@ -83,6 +92,7 @@ body {
   width: 13.33%;
 }
 
+/* button settings  */
 .currentbutton button {
   width: 50px;
   height: 40px;
@@ -102,11 +112,15 @@ body {
   border-bottom-right-radius: 15px;
 }
 
+
+/* current location display settings  */
 .currentlocation img {
   width: 40px;
   height: 40px;
 }
 
+
+/* forecast settings  */
 .forecast {
   display: flex;
 }
@@ -115,6 +129,7 @@ body {
   color: white;
 }
 
+/* information boxes for wind, temperature, humidity and visibility settings  */
 .sensinfo {
   display: flex;
   flex-wrap: wrap;
@@ -144,6 +159,8 @@ body {
   border-radius: 22px;
 }
 
+
+/* forecast settings  */
 .forecastinfo {
   width: 59%;
   margin-left: 6%;
@@ -172,14 +189,17 @@ body {
 }
 
 
-/* Team css */
+/* Team's page settings */
 
+/* main box display settings */
 .teamscont {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
+
+/* styles for team members */
 
 .teamnames {
   background-color: #48319dd2;
@@ -206,7 +226,7 @@ a {
   color: white;
 }
 
-/*  About Page*/
+/*  About Page settings */
 
 .center-h2 {
   text-align: center;
