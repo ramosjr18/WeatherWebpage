@@ -1,35 +1,32 @@
 <nav-bar-page></nav-bar-page>
 
-<div class="infocard" style="height: 500px;">
-  <div class="container mt-5">
-    <form>
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input
-          type="email"
-          class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-        />
-        <div id="emailHelp" class="form-text"></div>
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Title</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" />
-      </div>
+<div class="infocardCon">
+  <h1 style="color: white; text-align: center; margin-top: 20px; margin-bottom: 5px;">Contact</h1>
+  <br />
+  <div class="insidecont">
+    <div class="formular">
+      <form action="mailto:your-email@example.com" method="POST" enctype="text/plain">
   
-      <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label"
-          >Message
-        </label>
-        <textarea
-          class="form-control"
-          id="exampleFormControlTextarea1"
-          rows="3"
-        ></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+        <input type="text" id="title" name="title" placeholder="Full Name" required>
+        <br>
+  
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <br>
+  
+        <textarea id="message" name="message" rows="3" placeholder="Message" required></textarea>
+        <br>
+  
+        <button type="submit">Contact Us</button>
+      </form>
+    </div>
+    <br>
+    <div class="guide">
+      <h5>
+        To send an email to us, please fill out the form above and click "Send". We
+      will get back to you as soon as possible! Thank You!
+      </h5>
+      <img class="imagencon" src="../../../../assets/images/new-york.jpg" alt="">
+    </div>
   </div>
-  
+
 </div>

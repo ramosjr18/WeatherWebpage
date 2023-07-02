@@ -37,7 +37,7 @@
             <h3 *ngIf="!isCelcius">{{ weatherNow.main.temp | toF }} °F</h3>
 
             <div class="condition">
-              <img src="../../../../assets/icons/nubladologo.png" alt="" />
+              <img src="{{ weatherNow.weather![0].icon | weatherImg }}" alt="Icon for Actual weather" />
               <p class="">{{ weatherNow.weather![0].main }}</p>
             </div>
           </div>
