@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component,  EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,15 +21,12 @@ export class NavbarComponent {
   
   }
 
-  hamburguer() {
-    const hamburger = document.querySelector('.hamburger') as HTMLElement;
-    const menu = document.querySelector('.menu') as HTMLElement;
-  
-    // Toggle the menu when the hamburger button is clicked
-    hamburger.addEventListener('click', function() {
-      menu.classList.toggle('show');
-    });
+  isMenuOpen: boolean = false;
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
   }
+
   
 }
 

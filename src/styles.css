@@ -412,16 +412,18 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 30px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
   cursor: pointer;
 }
 
 .line {
-  width: 100%;
+  width: 30px;
   height: 2px;
-  background-color: #FFFFFF;
-  margin-bottom: 4px;
+  background-color: white;
+  margin: 4px 0;
 }
 
 .menu {
